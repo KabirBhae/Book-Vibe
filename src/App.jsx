@@ -1,10 +1,13 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 	return (
-		<>
-			<h1 className="bg-red-800 text-center">Vite + React</h1>
-		</>
+		<div className="max-w-6xl mx-auto">
+			<Navbar></Navbar>
+			<Outlet></Outlet>
+		</div>
 	);
 }
 
