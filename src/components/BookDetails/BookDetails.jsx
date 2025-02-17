@@ -1,5 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import { addBookToLocalStorage } from "../../utility/addToLocalStorage";
+import { addBookToLocalStorage, getBookFromLocalStorage } from "../../utility/addToLocalStorage";
+import { useEffect, useState } from "react";
+import { removeBookFromLocalStorage } from "../../utility/removeFromLocalStorage";
 
 const BookDetails = () => {
 	const books = useLoaderData();
@@ -10,9 +12,22 @@ const BookDetails = () => {
 	//for the rating part
 	const oneToTen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-	const handleAddToWishList = (id)=>{
+	const handleAddToWishList = id => {
 		addBookToLocalStorage(id);
-	}
+		setIsStoredBooksChanged(!isStoredBooksChanged);
+	};
+	const handleRemoveFromWishList = id => {
+		removeBookFromLocalStorage(id);
+		setIsStoredBooksChanged(!isStoredBooksChanged);
+	};
+
+	const [storedBooks, setstoredBooks] = useState([]);
+	const [isStoredBooksChanged, setIsStoredBooksChanged] = useState(false);
+	useEffect(() => {
+		let localBooks = getBookFromLocalStorage();
+		localBooks = localBooks.map(item => parseInt(item));
+		setstoredBooks(localBooks);
+	}, [isStoredBooksChanged]);
 	return (
 		<div className="hero bg-base-200 min-h-screen">
 			<div className="hero-content flex-col lg:flex-row">
@@ -64,9 +79,15 @@ const BookDetails = () => {
 						</div>
 					</div>
 					<div className="mt-8">
-						<button onClick={() => handleAddToWishList(bookId)} className="btn btn-primary mr-4">
-							Add to WishList
-						</button>
+						{storedBooks.includes(parseInt(bookId)) ? (
+							<button onClick={() => handleRemoveFromWishList(bookId)} className="btn btn-primary">
+								{storedBooks.includes(parseInt(bookId)) ? "Remove from WishList" : ""}
+							</button>
+						) : (
+							<button onClick={() => handleAddToWishList(bookId)} className="btn btn-primary">
+								{storedBooks.includes(parseInt(bookId)) ? "Wish Listed" : "Add to WishList"}
+							</button>
+						)}
 					</div>
 				</div>
 			</div>

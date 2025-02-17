@@ -1,20 +1,29 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-    return (
-			<div className="navbar bg-base-100 shadow-sm">
-				<div className="navbar-start">
-					<NavLink className="btn btn-ghost text-xl" to="/">
-						BookVibe
-					</NavLink>
-				</div>
+	const parameter = useLocation();
+	return (
+		<div className="navbar bg-gray-800 shadow-sm">
+			<div className="navbar-start">
+				<NavLink className="btn btn-ghost text-xl" to="/">
+					BookVibe
+				</NavLink>
+			</div>
+			{parameter.pathname != "/wishlist" ? (
 				<div className="navbar-end">
 					<NavLink className="btn" to="/wishlist">
 						Go to Wish List
 					</NavLink>
 				</div>
-			</div>
-		);
+			) : (
+				<div className="navbar-end">
+					<NavLink className="btn" to={-1}>
+						Go back
+					</NavLink>
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default Navbar;

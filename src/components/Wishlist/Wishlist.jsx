@@ -9,7 +9,6 @@ const Wishlist = () => {
 	useEffect(() => {
 		let storedBookIDs = getBookFromLocalStorage();
 		storedBookIDs = storedBookIDs.map(item => parseInt(item));
-		console.log(storedBookIDs);
 		setwishListBooks(allBooks.filter(bookItem => storedBookIDs.includes(bookItem.bookId)));
 	}, []);
 	return (
