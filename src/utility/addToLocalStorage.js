@@ -18,4 +18,4 @@ const addBookToLocalStorage = (id) =>{
     }
 }
 
-export {addBookToLocalStorage}
+export { addBookToLocalStorage, getBookFromLocalStorage };
