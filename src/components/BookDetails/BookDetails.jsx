@@ -1,4 +1,5 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { addBookToLocalStorage } from "../../utility/addToLocalStorage";
 
 const BookDetails = () => {
 	const books = useLoaderData();
@@ -8,6 +9,10 @@ const BookDetails = () => {
 	const { totalPages, publisher, yearOfPublishing, rating } = specificBook;
 	//for the rating part
 	const oneToTen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+	const handleAddToWishList = (id)=>{
+		addBookToLocalStorage(id);
+	}
 	return (
 		<div className="hero bg-base-200 min-h-screen">
 			<div className="hero-content flex-col lg:flex-row">
@@ -48,11 +53,9 @@ const BookDetails = () => {
 								{oneToTen.map(number => {
 									if (Math.round(rating * 2) === number && number % 2) {
 										return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-1 bg-green-500" defaultChecked />;
-									}
-									else if (Math.round(rating * 2) === number && number % 2 == 0) {
+									} else if (Math.round(rating * 2) === number && number % 2 == 0) {
 										return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-2 bg-green-500" defaultChecked />;
-									}
-									else if (number % 2) {
+									} else if (number % 2) {
 										return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-1 bg-green-500" />;
 									}
 									return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-2 bg-green-500" />;
@@ -61,8 +64,9 @@ const BookDetails = () => {
 						</div>
 					</div>
 					<div className="mt-8">
-						<button className="btn btn-primary mr-4">Read</button>
-						<button className="btn btn-primary">WishList</button>
+						<button onClick={() => handleAddToWishList(bookId)} className="btn btn-primary mr-4">
+							Add to WishList
+						</button>
 					</div>
 				</div>
 			</div>
