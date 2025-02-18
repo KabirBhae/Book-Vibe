@@ -6,8 +6,11 @@ const Banner = () => {
 				<img src={bannerImg} className="max-w-sm rounded-lg shadow-2xl" />
 				<div className="px-6">
 					<h1 className="text-5xl font-bold">Books to freshen up your bookshelf</h1>
-					<p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-					<a href="#book-catalog"
+					<p className="py-6">
+						Welcome to <span className="font-bold text-indigo-400">BookVibe</span>, your ultimate destination for discovering amazing books! Whether you are looking for timeless classics or the latest bestsellers, we have something for every reader.
+					</p>
+					<a
+						href="#book-catalog"
 						onClick={e => {
 							e.preventDefault();
 							document.querySelector("#book-catalog").scrollIntoView({

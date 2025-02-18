@@ -29,7 +29,7 @@ const Wishlist = () => {
 	return (
 		<>
 			<h2 id="book-catalog" className="text-4xl font-bold text-center my-9">
-				Wish List
+				Your Wishlist
 			</h2>
 			<div className="my-6 flex justify-center">
 				<details className="dropdown">

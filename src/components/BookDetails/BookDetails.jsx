@@ -81,11 +81,11 @@ const BookDetails = () => {
 					<div className="mt-8">
 						{storedBooks.includes(parseInt(bookId)) ? (
 							<button onClick={() => handleRemoveFromWishList(bookId)} className="btn btn-primary">
-								{storedBooks.includes(parseInt(bookId)) ? "Remove from WishList" : ""}
+								{storedBooks.includes(parseInt(bookId)) ? "Remove from Wishlist" : ""}
 							</button>
 						) : (
 							<button onClick={() => handleAddToWishList(bookId)} className="btn btn-primary">
-								{storedBooks.includes(parseInt(bookId)) ? "Wish Listed" : "Add to WishList"}
+								{storedBooks.includes(parseInt(bookId)) ? "Wish Listed" : "Add to Wishlist"}
 							</button>
 						)}
 					</div>
