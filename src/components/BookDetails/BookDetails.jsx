@@ -66,14 +66,10 @@ const BookDetails = () => {
 							<div className="rating rating-lg rating-half">
 								<input disabled type="radio" name="rating-10" className="rating-hidden" />
 								{oneToTen.map(number => {
-									if (Math.round(rating * 2) === number && number % 2) {
-										return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-1 bg-green-500" defaultChecked />;
-									} else if (Math.round(rating * 2) === number && number % 2 == 0) {
-										return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-2 bg-green-500" defaultChecked />;
-									} else if (number % 2) {
-										return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-1 bg-green-500" />;
+									if (Math.round(rating * 2) >= number) {
+										return <input key={number} disabled type="radio" name="rating-10" className={`mask mask-star-2 ${number % 2 ? "mask-half-1" : "mask-half-2"} bg-green-600 opacity-100`} />;
 									}
-									return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-2 bg-green-500" />;
+									return <input key={number} disabled type="radio" name="rating-10" className={`mask mask-star-2 ${number % 2 ? "mask-half-1" : "mask-half-2"} bg-green-600`} />;
 								})}
 							</div>
 						</div>

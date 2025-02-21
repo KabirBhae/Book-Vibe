@@ -4,9 +4,6 @@ const Book = ({ book }) => {
 	const { bookId, bookName, author, image, tags, rating } = book;
 	//for the rating part
 	const oneToTen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-	const ratingStyle = {
-		opacity: "100%",
-	};
 	return (
 		<div className="card bg-gray-600 w-94 shadow-xl">
 			<figure className="w-[326px] mx-auto py-8 px-6 mt-6 bg-blue-200 rounded-2xl">
@@ -32,17 +29,9 @@ const Book = ({ book }) => {
 						{/* "defaultChecked" attribute does not work when there are multiple elements with this attribute on the same page */}
 						{oneToTen.map(number => {
 							if (Math.round(rating * 2) >= number) {
-								if (number % 2) {
-									return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-1 bg-green-600" style={ratingStyle} />;
-								}
-								return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-2 bg-green-600" style={ratingStyle} />;
-							} else {
-								if (number % 2) {
-									return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-1 bg-green-600" />;
-								} else {
-									return <input key={number} disabled type="radio" name="rating-10" className="mask mask-star-2 mask-half-2 bg-green-600" />;
-								}
+								return <input key={number} disabled type="radio" name="rating-10" className={`mask mask-star-2 ${number % 2 ? "mask-half-1" : "mask-half-2"} bg-green-600 opacity-100`} />;
 							}
+							return <input key={number} disabled type="radio" name="rating-10" className={`mask mask-star-2 ${number % 2 ? "mask-half-1" : "mask-half-2"} bg-green-600`} />;
 						})}
 					</div>
 				</div>
